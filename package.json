@@ -1,0 +1,43 @@
+{
+  "name": "jwt-manager",
+  "version": "1.0.0",
+  "description": "A JS Library for managing JWT Tokens",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeorgeHanson/jwt-manager.git"
+  },
+  "keywords": [
+    "Javascript",
+    "JWT",
+    "JWT",
+    "Token",
+    "Authentication"
+  ],
+  "author": "George Hanson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GeorgeHanson/jwt-manager/issues"
+  },
+  "homepage": "https://github.com/GeorgeHanson/jwt-manager#readme",
+  "devDependencies": {
+    "babel-jest": "^20.0.3",
+    "babel-preset-es2015": "^6.24.1",
+    "jest": "^20.0.4",
+    "jest-localstorage-mock": "^1.2.0",
+    "mock-cookie": "^0.3.2",
+    "regenerator-runtime": "^0.10.5"
+  },
+  "jest": {
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
+  },
+  "dependencies": {
+    "js-cookie": "^2.1.4",
+    "jwt-decode": "^2.2.0"
+  }
+}
