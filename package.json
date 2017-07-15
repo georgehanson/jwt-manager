@@ -37,6 +37,7 @@
     ]
   },
   "dependencies": {
-    "js-cookie": "^2.1.4"
+    "js-cookie": "^2.1.4",
+    "jwt-decode": "^2.2.0"
   }
 }

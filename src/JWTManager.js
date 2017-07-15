@@ -1,14 +1,15 @@
 const LocalStore = require('./Stores/Local');
 const CookieStore = require('./Stores/Cookie');
+const JWTDecode = require('jwt-decode');
 
 class JWTManager {
     /**
      * Construct the class
      */
     constructor() {
-        this.token = null;
         this.config = {
-            store: 'cookie'
+            store: 'cookie',
+            expiryCheck: 60
         };
     }
 
@@ -41,7 +42,9 @@ class JWTManager {
      * Forget the current token
      */
     forget() {
-        this.token = null;
+        let Store = this.getStore();
+
+        Store.forget();
     }
 
     /**
