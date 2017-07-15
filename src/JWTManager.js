@@ -1,11 +1,15 @@
-class JWTManager
-{
+const LocalStore = require('./Stores/Local');
+const CookieStore = require('./Stores/Cookie');
+
+class JWTManager {
     /**
      * Construct the class
      */
     constructor() {
         this.token = null;
-        this.config = {};
+        this.config = {
+            store: 'cookie'
+        };
     }
 
     /**
@@ -14,9 +18,10 @@ class JWTManager
      * @param token
      * @returns {string}
      */
-    setToken(token)
-    {
-        this.token = token;
+    setToken(token) {
+        let Store = this.getStore();
+
+        Store.set(token);
 
         return token;
     }
@@ -26,17 +31,28 @@ class JWTManager
      *
      * @returns {string|null}
      */
-    getToken()
-    {
-        return this.token;
+    getToken() {
+        let Store = this.getStore();
+        
+        return Store.get();
     }
 
     /**
      * Forget the current token
      */
-    forget()
-    {
+    forget() {
         this.token = null;
+    }
+
+    /**
+     * Get the store
+     */
+    getStore() {
+        if (this.config.store === 'local') {
+            return LocalStore;
+        } else if (this.config.store === 'cookie') {
+            return CookieStore;
+        }
     }
 }
 
