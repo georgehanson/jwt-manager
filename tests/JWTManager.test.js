@@ -53,3 +53,18 @@ test('A token can be forgotten from the cookie store', () => {
     manager.forget();
     expect(CookieStore.forget).toHaveBeenCalled();
 });
+
+test('A token can be refreshed for local storage', () => {
+    let manager = new JWTManager();
+    manager.config.store = 'local';
+    manager.refresh('test');
+    expect(LocalStore.forget).toHaveBeenCalled();
+    expect(LocalStore.set).toHaveBeenCalledWith('test');
+});
+
+test('A token can be refreshed for cookie storage', () => {
+    let manager = new JWTManager();
+    manager.refresh('test');
+    expect(CookieStore.forget).toHaveBeenCalled();
+    expect(CookieStore.set).toHaveBeenCalledWith('test');
+});

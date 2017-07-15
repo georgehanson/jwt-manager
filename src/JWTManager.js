@@ -48,6 +48,18 @@ class JWTManager {
     }
 
     /**
+     * Forget the old token and set the new token
+     *
+     * @param token
+     */
+    refresh(token)
+    {
+        let Store = this.getStore();
+        Store.forget();
+        Store.set(token);
+    }
+
+    /**
      * Get the store
      */
     getStore() {
