@@ -1,0 +1,6 @@
+.gitignore
+.babelrc
+.idea
+npm-debug.log
+tests
+.travis.yml
