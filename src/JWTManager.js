@@ -1,5 +1,5 @@
-const CookieStore = require('./Stores/Cookie');
-const LocalStore = require('./Stores/Local');
+let CookieStore = require('./Stores/Cookie');
+let LocalStore = require('./Stores/Local');
 const JWTDecode = require('jwt-decode');
 
 class JWTManager {
