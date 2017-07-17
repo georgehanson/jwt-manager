@@ -224,9 +224,9 @@ var JWTManager = function () {
         key: 'resolveStore',
         value: function resolveStore() {
             if (this.config.store === 'local') {
-                this.store = CookieStore;
+                this.store = new LocalStore();
             } else if (this.config.store === 'cookie') {
-                this.store = LocalStore;
+                this.store = new CookieStore();
             }
         }
     }]);
