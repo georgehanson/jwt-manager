@@ -1,4 +1,4 @@
-import JWTManager from './../src/JWTManager';
+const JWTManager = require('./../src/JWTManager');
 
 const tokenValue = 'testtoken';
 

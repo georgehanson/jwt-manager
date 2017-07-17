@@ -1,4 +1,4 @@
-import Local from './../../src/Stores/Local';
+const Local = require('./../../src/Stores/Local');
 
 test("It can store the token", () => {
     let Store = new Local();

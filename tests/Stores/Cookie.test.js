@@ -1,4 +1,4 @@
-import Cookie from './../../src/Stores/Cookie';
+const Cookie = require('./../../src/Stores/Cookie');
 jest.mock('js-cookie');
 const cookies = require('js-cookie');
 
