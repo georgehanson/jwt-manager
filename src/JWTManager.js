@@ -93,7 +93,7 @@ class JWTManager {
                     callback(this.getToken());
                 }
             }
-        }, this.config.secondsInterval);
+        }, this.getSecondsInterval());
     }
 
     /**
@@ -119,6 +119,16 @@ class JWTManager {
         } else if (this.config.store === 'cookie') {
             this.store = new CookieStore();
         }
+    }
+
+    /**
+     * Get the seconds interval
+     *
+     * @return {int}
+     */
+    getSecondsInterval()
+    {
+        return this.config.secondsInterval * 1000;
     }
 }
 
