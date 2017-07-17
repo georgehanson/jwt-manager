@@ -22,7 +22,7 @@ class JWTManager {
     setToken(token) {
         let Store = this.getStore();
 
-        Store.set(token);
+        Store.store(token);
 
         return token;
     }
@@ -35,7 +35,7 @@ class JWTManager {
     getToken() {
         let Store = this.getStore();
         
-        return Store.get();
+        return Store.retrieve();
     }
 
     /**
@@ -56,7 +56,7 @@ class JWTManager {
     {
         let Store = this.getStore();
         Store.forget();
-        Store.set(token);
+        Store.retrieve(token);
     }
 
     /**

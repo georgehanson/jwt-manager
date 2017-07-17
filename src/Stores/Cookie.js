@@ -2,12 +2,12 @@ const cookies = require('js-cookie');
 
 class Cookie
 {
-    set(token)
+    store(token)
     {
         cookies.set('jwt', token);
     }
 
-    get()
+    retrieve()
     {
         if (cookies.get('jwt')) {
             return cookies.get('jwt');

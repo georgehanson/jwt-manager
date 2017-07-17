@@ -1,11 +1,11 @@
 class Local
 {
-    set(token)
+    store(token)
     {
         localStorage.setItem('jwt', token);
     }
 
-    get()
+    retreive()
     {
         if (localStorage.getItem('jwt')) {
             return localStorage.getItem('jwt');
