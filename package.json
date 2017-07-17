@@ -1,6 +1,6 @@
 {
   "name": "jwt-manager",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "A JS Library for managing JWT Tokens",
   "main": "dist/bundle.js",
   "scripts": {
