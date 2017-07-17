@@ -192,10 +192,13 @@ var JWTManager = function () {
 
             setInterval(function () {
                 var decoded = _this.decode();
-                var secondsUntilExpiry = decoded.exp - Date.now() / 1000;
 
-                if (secondsUntilExpiry <= remainingSeconds) {
-                    callback(_this.getToken());
+                if (decoded) {
+                    var secondsUntilExpiry = decoded.exp - Date.now() / 1000;
+
+                    if (secondsUntilExpiry <= remainingSeconds) {
+                        callback(_this.getToken());
+                    }
                 }
             }, this.config.secondsInterval);
         }

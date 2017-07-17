@@ -85,10 +85,13 @@ class JWTManager {
     {
         setInterval(() => {
             let decoded = this.decode();
-            let secondsUntilExpiry = decoded.exp - (Date.now() / 1000);
+            
+            if (decoded) {
+                let secondsUntilExpiry = decoded.exp - (Date.now() / 1000);
 
-            if (secondsUntilExpiry <= remainingSeconds) {
-                callback(this.getToken());
+                if (secondsUntilExpiry <= remainingSeconds) {
+                    callback(this.getToken());
+                }
             }
         }, this.config.secondsInterval);
     }
