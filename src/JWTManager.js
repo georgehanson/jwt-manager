@@ -85,7 +85,7 @@ class JWTManager {
     {
         setInterval(() => {
             let decoded = this.decode();
-            
+
             if (decoded) {
                 let secondsUntilExpiry = decoded.exp - (Date.now() / 1000);
 
