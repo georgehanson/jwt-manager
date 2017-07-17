@@ -12,6 +12,7 @@ You can then import the library using the following:
 
 ```js
 import {Manager} from 'jwt-manager';
+window.JWTManager = new Manager();
 ```
 
 ## Usage
