@@ -70,24 +70,12 @@
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Cookie = __webpack_require__(1);
-
-var _Cookie2 = _interopRequireDefault(_Cookie);
-
-var _Local = __webpack_require__(3);
-
-var _Local2 = _interopRequireDefault(_Local);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var CookieStore = __webpack_require__(1);
+var LocalStore = __webpack_require__(3);
 var JWTDecode = __webpack_require__(4);
 
 var JWTManager = function () {
@@ -227,9 +215,9 @@ var JWTManager = function () {
         key: 'resolveStore',
         value: function resolveStore() {
             if (this.config.store === 'local') {
-                this.store = new _Local2.default();
+                this.store = CookieStore;
             } else if (this.config.store === 'cookie') {
-                this.store = new _Cookie2.default();
+                this.store = LocalStore;
             }
         }
     }]);
@@ -237,7 +225,7 @@ var JWTManager = function () {
     return JWTManager;
 }();
 
-exports.default = JWTManager;
+module.exports = JWTManager;
 
 /***/ }),
 /* 1 */
@@ -245,10 +233,6 @@ exports.default = JWTManager;
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -285,7 +269,7 @@ var Cookie = function () {
     return Cookie;
 }();
 
-exports.default = Cookie;
+module.exports = Cookie;
 
 /***/ }),
 /* 2 */
@@ -469,10 +453,6 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 "use strict";
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -506,7 +486,7 @@ var Local = function () {
     return Local;
 }();
 
-exports.default = Local;
+module.exports = Local;
 
 /***/ }),
 /* 4 */

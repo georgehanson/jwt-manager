@@ -25,4 +25,4 @@ class Local
     }
 }
 
-export default Local;
+module.exports = Local;
