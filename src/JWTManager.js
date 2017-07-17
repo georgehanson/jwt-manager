@@ -56,7 +56,7 @@ class JWTManager {
     {
         let Store = this.getStore();
         Store.forget();
-        Store.retrieve(token);
+        Store.store(token);
     }
 
     /**

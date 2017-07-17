@@ -9,40 +9,40 @@ const JWTDecode = require('jwt-decode').mockReturnValue({
 
 jest.mock('./../src/Stores/Local');
 const LocalStore = require('./../src/Stores/Local');
-LocalStore.set = jest.fn();
-LocalStore.get = jest.fn().mockReturnValue(tokenValue);
+LocalStore.store = jest.fn();
+LocalStore.retrieve = jest.fn().mockReturnValue(tokenValue);
 LocalStore.forget = jest.fn();
 jest.mock('./../src/Stores/Cookie');
 const CookieStore = require('./../src/Stores/Cookie');
-CookieStore.set = jest.fn();
-CookieStore.get = jest.fn().mockReturnValue(tokenValue);
+CookieStore.store = jest.fn();
+CookieStore.retrieve = jest.fn().mockReturnValue(tokenValue);
 CookieStore.forget = jest.fn();
 
 test('A token can be stored in a cookie', () => {
     let manager = new JWTManager();
     manager.setToken(tokenValue);
-    expect(CookieStore.set).toHaveBeenCalledWith(tokenValue);
+    expect(CookieStore.store).toHaveBeenCalledWith(tokenValue);
 });
 
 test('A token can be set into local storage', () => {
     let manager = new JWTManager();
     manager.config.store = 'local';
     manager.setToken(tokenValue);
-    expect(LocalStore.set).toHaveBeenCalledWith(tokenValue);
+    expect(LocalStore.store).toHaveBeenCalledWith(tokenValue);
 });
 
 test('A token can be retrieved from local storage', () => {
     let manager = new JWTManager();
     manager.config.store = 'local';
     let token = manager.getToken();
-    expect(LocalStore.set).toHaveBeenCalled();
+    expect(LocalStore.retrieve).toHaveBeenCalled();
     expect(token).toBe(tokenValue);
 });
 
 test('A token can be retrieved from the cookies', () => {
     let manager = new JWTManager();
     let token = manager.getToken();
-    expect(CookieStore.set).toHaveBeenCalled();
+    expect(CookieStore.retrieve).toHaveBeenCalled();
     expect(token).toBe(tokenValue);
 });
 
@@ -64,14 +64,14 @@ test('A token can be refreshed for local storage', () => {
     manager.config.store = 'local';
     manager.refresh('test');
     expect(LocalStore.forget).toHaveBeenCalled();
-    expect(LocalStore.set).toHaveBeenCalledWith('test');
+    expect(LocalStore.store).toHaveBeenCalledWith('test');
 });
 
 test('A token can be refreshed for cookie storage', () => {
     let manager = new JWTManager();
     manager.refresh('test');
     expect(CookieStore.forget).toHaveBeenCalled();
-    expect(CookieStore.set).toHaveBeenCalledWith('test');
+    expect(CookieStore.store).toHaveBeenCalledWith('test');
 });
 
 test('A token can be decoded', () => {

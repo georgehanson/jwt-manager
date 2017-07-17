@@ -4,13 +4,13 @@ const cookies = require('js-cookie');
 
 test("It can store the token", () => {
     let Store = new Cookie();
-    Store.set('test');
+    Store.store('test');
     expect(cookies.set).toHaveBeenLastCalledWith('jwt', 'test');
 });
 
 test("It can get the token", () => {
     let Store = new Cookie();
-    let token = Store.get();
+    let token = Store.retrieve();
     expect(cookies.get).toHaveBeenLastCalledWith('jwt');
 });
 
