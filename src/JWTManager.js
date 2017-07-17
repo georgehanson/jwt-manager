@@ -112,9 +112,9 @@ class JWTManager {
     resolveStore()
     {
         if (this.config.store === 'local') {
-            this.store = CookieStore;
+            this.store = new LocalStore();
         } else if (this.config.store === 'cookie') {
-            this.store = LocalStore;
+            this.store = new CookieStore();
         }
     }
 }
