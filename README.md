@@ -11,13 +11,6 @@ You can install this package by running `npm install --save jwt-manager`.
 You can then import the library using the following:
 
 ```js
-Import JWTManager from 'jwt-manager';
-const JWTManager = new JWTManager();
-````
-
-or
-
-```js
 const JWTManager = require('jwt-manager');
 ```
 
