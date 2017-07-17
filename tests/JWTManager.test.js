@@ -92,5 +92,6 @@ test('The JWT Token can be monitored', () => {
 
     setTimeout(() => {
         expect(callback).toHaveBeenCalledTimes(1);
+        expect(callback).toHaveBeenCalledWith(tokenValue);
     }, 7);
 });
