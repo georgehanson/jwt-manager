@@ -77,10 +77,10 @@ class JWTManager {
      * Run the callback automatically when the token is
      * due to expire within the given remainingSeconds
      *
-     * @param {int} remainingSeconds
      * @param {callable} callback
+     * @param {int} remainingSeconds
      */
-    monitor(remainingSeconds = 60, callback)
+    monitor(callback, remainingSeconds = 60)
     {
         setInterval(() => {
             let decoded = this.decode();
