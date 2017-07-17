@@ -1,5 +1,10 @@
 class Local
 {
+    constructor()
+    {
+
+    }
+
     store(token)
     {
         localStorage.setItem('jwt', token);

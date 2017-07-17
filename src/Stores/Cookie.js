@@ -2,6 +2,11 @@ const cookies = require('js-cookie');
 
 class Cookie
 {
+    constructor()
+    {
+
+    }
+
     store(token)
     {
         cookies.set('jwt', token);

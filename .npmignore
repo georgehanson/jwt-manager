@@ -6,3 +6,4 @@ tests
 .travis.yml
 index.html
 app.js
+webpack.config.js

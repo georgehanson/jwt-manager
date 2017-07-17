@@ -20,6 +20,7 @@ CookieStore.forget = jest.fn();
 
 test('A token can be stored in a cookie', () => {
     let manager = new JWTManager();
+    manager.store = CookieStore;
     manager.setToken(tokenValue);
     expect(CookieStore.store).toHaveBeenCalledWith(tokenValue);
 });
@@ -27,6 +28,7 @@ test('A token can be stored in a cookie', () => {
 test('A token can be set into local storage', () => {
     let manager = new JWTManager();
     manager.config.store = 'local';
+    manager.store = LocalStore;
     manager.setToken(tokenValue);
     expect(LocalStore.store).toHaveBeenCalledWith(tokenValue);
 });
@@ -34,6 +36,7 @@ test('A token can be set into local storage', () => {
 test('A token can be retrieved from local storage', () => {
     let manager = new JWTManager();
     manager.config.store = 'local';
+    manager.store = LocalStore;
     let token = manager.getToken();
     expect(LocalStore.retrieve).toHaveBeenCalled();
     expect(token).toBe(tokenValue);
@@ -41,6 +44,7 @@ test('A token can be retrieved from local storage', () => {
 
 test('A token can be retrieved from the cookies', () => {
     let manager = new JWTManager();
+    manager.store = CookieStore;
     let token = manager.getToken();
     expect(CookieStore.retrieve).toHaveBeenCalled();
     expect(token).toBe(tokenValue);
@@ -48,6 +52,7 @@ test('A token can be retrieved from the cookies', () => {
 
 test('A token can be forgotten from local storage', () => {
     let manager = new JWTManager();
+    manager.store = LocalStore;
     manager.config.store = 'local';
     manager.forget();
     expect(LocalStore.forget).toHaveBeenCalled();
@@ -55,12 +60,14 @@ test('A token can be forgotten from local storage', () => {
 
 test('A token can be forgotten from the cookie store', () => {
     let manager = new JWTManager();
+    manager.store = CookieStore;
     manager.forget();
     expect(CookieStore.forget).toHaveBeenCalled();
 });
 
 test('A token can be refreshed for local storage', () => {
     let manager = new JWTManager();
+    manager.store = LocalStore;
     manager.config.store = 'local';
     manager.refresh('test');
     expect(LocalStore.forget).toHaveBeenCalled();
@@ -69,6 +76,7 @@ test('A token can be refreshed for local storage', () => {
 
 test('A token can be refreshed for cookie storage', () => {
     let manager = new JWTManager();
+    manager.store = CookieStore;
     manager.refresh('test');
     expect(CookieStore.forget).toHaveBeenCalled();
     expect(CookieStore.store).toHaveBeenCalledWith('test');
@@ -76,6 +84,7 @@ test('A token can be refreshed for cookie storage', () => {
 
 test('A token can be decoded', () => {
     let manager = new JWTManager();
+    manager.store = CookieStore;
     let token = manager.decode();
     expect(JWTDecode).toHaveBeenCalled();
     expect(token.exp).toBe(1234);
@@ -83,6 +92,7 @@ test('A token can be decoded', () => {
 
 test('The JWT Token can be monitored', () => {
     let manager = new JWTManager();
+    manager.store = CookieStore;
     manager.decode = jest.fn().mockReturnValue({
         exp: (Date.now() / 1000) + 63
     });

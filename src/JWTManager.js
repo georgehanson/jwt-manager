@@ -1,5 +1,5 @@
-const LocalStore = require('./Stores/Local');
-const CookieStore = require('./Stores/Cookie');
+import Cookie from './Stores/Cookie';
+import Local from './Stores/Local';
 const JWTDecode = require('jwt-decode');
 
 class JWTManager {
@@ -11,6 +11,7 @@ class JWTManager {
             store: 'cookie',
             secondsInterval: 3
         };
+        this.store = null;
     }
 
     /**
@@ -96,10 +97,24 @@ class JWTManager {
      * Get the store
      */
     getStore() {
+        if (! this.store) {
+            this.resolveStore();
+        }
+
+        return this.store;
+    }
+
+    /**
+     * Resolve the store and cache it
+     *
+     * @return {void}
+     */
+    resolveStore()
+    {
         if (this.config.store === 'local') {
-            return LocalStore;
+            this.store = new Local();
         } else if (this.config.store === 'cookie') {
-            return CookieStore;
+            this.store = new Cookie();
         }
     }
 }
