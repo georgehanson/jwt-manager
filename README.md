@@ -40,5 +40,35 @@ If you would like to remove the stored JWT Token, you can simply call the `forge
 ### Refreshing JWT Tokens
 To refresh a JWT Token, you simply need to call the `refresh` method: `JWTManager.refresh('new-jwt-token')`.
 
+### Decoding Tokens
+If you would like to decode the JWT token, you can simply use the `decode` method: `JWTManager.decode()`. This will check to see if there is a token set and if there is, it will decode it and return the decoded object.
+
+### Monitoring Tokens
+When dealing with JWT Tokens it is useful to monitor when the token is close to expiring so a request can be made to generate a new token. JWT manager handles this using a useful `monitor` method. For example:
+
+```javascript
+JWTManager.monitor((token) => {
+    // Make request to refresh token here
+    // Then call the JWTManager.refresh() method and pass in your new token
+});
+```
+
+This will then check on an interval basis to see if the JWT Token is going to expire within the next 60 seconds. If it is, it will run the callback. You can also pass a second parameter to the `monitor` function. This will set the number of seconds until the token expires, before it triggers the callback. By default it is set to 60. In the below example, it will trigger the callback when the token is due to expire within the next 30 seconds.
+
+```javascript
+JWTManager.monitor((token) => {
+    // Make request to refresh token here
+    // Then call the JWTManager.refresh() method and pass in your new token
+}, 30);
+```
+
+JWT Manager will automatically check by default in three second intervals, however you can customise this by setting the following configuration option.
+
+```javascript
+JWTManger.config.secondsInterval = 5
+```
+
+The above example will make JWT Manager check in 5 second intervals instead.
+
 ## Test Suite
 You can run the test suite by running `npm run test`

@@ -9,7 +9,7 @@ class JWTManager {
     constructor() {
         this.config = {
             store: 'cookie',
-            expiryCheck: 60
+            secondsInterval: 3
         };
     }
 
@@ -57,6 +57,39 @@ class JWTManager {
         let Store = this.getStore();
         Store.forget();
         Store.set(token);
+    }
+
+    /**
+     * Decode the current token
+     *
+     * @return {object}
+     */
+    decode()
+    {
+        let token = this.getToken();
+
+        if (token) {
+            return JWTDecode(token);
+        }
+    }
+
+    /**
+     * Run the callback automatically when the token is
+     * due to expire within the given remainingSeconds
+     *
+     * @param {callable} callback
+     * @param {int} remainingSeconds
+     */
+    monitor(callback, remainingSeconds = 60)
+    {
+        setInterval(() => {
+            let decoded = this.decode();
+            let secondsUntilExpiry = decoded.exp - (Date.now() / 1000);
+
+            if (secondsUntilExpiry <= remainingSeconds) {
+                callback(this.getToken());
+            }
+        }, this.config.secondsInterval);
     }
 
     /**
