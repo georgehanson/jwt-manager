@@ -200,7 +200,7 @@ var JWTManager = function () {
                         callback(_this.getToken());
                     }
                 }
-            }, this.config.secondsInterval);
+            }, this.getSecondsInterval());
         }
 
         /**
@@ -231,6 +231,18 @@ var JWTManager = function () {
             } else if (this.config.store === 'cookie') {
                 this.store = new CookieStore();
             }
+        }
+
+        /**
+         * Get the seconds interval
+         *
+         * @return {int}
+         */
+
+    }, {
+        key: 'getSecondsInterval',
+        value: function getSecondsInterval() {
+            return this.config.secondsInterval * 1000;
         }
     }]);
 

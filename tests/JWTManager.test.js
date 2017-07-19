@@ -98,10 +98,10 @@ test('The JWT Token can be monitored', () => {
     });
     let callback = jest.fn();
 
-    manager.monitor(callback, 60);
+    manager.monitor(callback);
 
     setTimeout(() => {
         expect(callback).toHaveBeenCalledTimes(1);
         expect(callback).toHaveBeenCalledWith(tokenValue);
-    }, 7);
+    }, 10);
 });
