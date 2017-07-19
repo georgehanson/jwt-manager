@@ -1,6 +1,8 @@
 # JWT Manager
 
 [![Build Status](https://travis-ci.org/GeorgeHanson/jwt-manager.svg?branch=master)](https://travis-ci.org/GeorgeHanson/jwt-manager)
+[![npm version](https://badge.fury.io/js/jwt-manager.svg)](https://badge.fury.io/js/jwt-manager)
+[![npm](https://img.shields.io/npm/dt/jwt-manager.svg)](https://www.npmjs.com/package/jwt-manager)
 
 JWT Manager is a Javascript Library designed to make storing and retrieving JWT tokens easier. It has an easy to use API
 designed to make working with JSON Web Tokens much easier.
@@ -12,6 +14,7 @@ You can then import the library using the following:
 
 ```js
 import {Manager} from 'jwt-manager';
+window.JWTManager = new Manager();
 ```
 
 ## Usage
