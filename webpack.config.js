@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-    entry: './index.js',
+    entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js'
@@ -10,9 +10,9 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.js$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
-                loader: "babel-loader"
+                loader: "ts-loader"
             }
         ]
     },
