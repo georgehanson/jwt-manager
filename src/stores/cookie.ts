@@ -7,7 +7,7 @@ export class Cookie implements Contract
      *
      * @param token
      */
-    store(token: string): void {
+    public store(token: string): void {
         let date = this.getExpiryDate();
 
         document.cookie = `jwt=${token};expires=${date.toUTCString()};path=/`;
@@ -16,7 +16,7 @@ export class Cookie implements Contract
     /**
      * Retrieve the token
      */
-    retrieve(): string | null {
+    public retrieve(): string | null {
         let key = 'jwt=';
         let decodedCookie = decodeURIComponent(document.cookie);
         let cookieArray = decodedCookie.split(';');
@@ -39,7 +39,7 @@ export class Cookie implements Contract
     /**
      * Forget the token
      */
-    forget(): void {
+    public forget(): void {
         document.cookie = 'jwt=; expires=Thu, 01-Jan-70 00:00:01 GMT;';
     }
 

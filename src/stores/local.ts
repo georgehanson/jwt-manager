@@ -7,14 +7,14 @@ export class Local implements Contract
      *
      * @param token
      */
-    store(token: string): void {
+    public store(token: string): void {
         localStorage.setItem('jwt', token);
     }
 
     /**
      * Retrieve the token
      */
-    retrieve(): string | null {
+    public retrieve(): string | null {
         let result = localStorage.getItem('jwt');
 
         return result ? result : null;
@@ -23,7 +23,7 @@ export class Local implements Contract
     /**
      * Forget the token
      */
-    forget(): void {
+    public forget(): void {
         localStorage.removeItem('jwt');
     }
 }
