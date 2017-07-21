@@ -16,7 +16,7 @@ export class Cookie implements Contract
     /**
      * Retrieve the token
      */
-    public retrieve(): string | null {
+    public retrieve(): string {
         let key = 'jwt=';
         let decodedCookie = decodeURIComponent(document.cookie);
         let cookieArray = decodedCookie.split(';');

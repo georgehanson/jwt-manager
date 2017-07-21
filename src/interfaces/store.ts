@@ -13,7 +13,7 @@ export interface Store {
      *
      * @return string|null
      */
-    retrieve(): string|null
+    retrieve(): string
 
     /**
      * Forget the token from the store

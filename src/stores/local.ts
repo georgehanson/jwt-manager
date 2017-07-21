@@ -14,10 +14,10 @@ export class Local implements Contract
     /**
      * Retrieve the token
      */
-    public retrieve(): string | null {
+    public retrieve(): string {
         let result = localStorage.getItem('jwt');
 
-        return result ? result : null;
+        return result ? result : "";
     }
 
     /**
