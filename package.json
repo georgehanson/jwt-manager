@@ -1,12 +1,12 @@
 {
   "name": "jwt-manager",
-  "version": "1.1.9",
+  "version": "2.0.0",
   "description": "A JS Library for managing JWT Tokens",
-  "main": "dist/bundle.js",
+  "main": "dist/build.js",
   "scripts": {
     "test": "jest",
-    "build": "webpack",
-    "production": "webpack -p"
+    "build": "./node_modules/.bin/rollup -c",
+    "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
   },
   "repository": {
     "type": "git",
@@ -26,25 +26,39 @@
   },
   "homepage": "https://github.com/GeorgeHanson/jwt-manager#readme",
   "devDependencies": {
-    "babel-cli": "^6.23.0",
+    "babel": "^6.0.0",
     "babel-core": "^6.0.0",
-    "babel-jest": "^19.0.0",
     "babel-loader": "^6.0.0",
-    "babel-preset-es2015": "^6.22.0",
-    "babel-preset-latest": "^6.0.0",
+    "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "babel-preset-es2016": "^6.16.0",
+    "babel-preset-stage-2": "^6.5.0",
     "jest": "^20.0.4",
     "jest-localstorage-mock": "^1.2.0",
     "mock-cookie": "^0.3.2",
     "regenerator-runtime": "^0.10.5",
-    "webpack": "^3.3.0"
+    "rollup": "^0.31.0",
+    "rollup-plugin-babel": "^2.4.0",
+    "rollup-plugin-typescript": "^0.7.5",
+    "rollup-plugin-uglify": "^2.0.1",
+    "ts-jest": "^20.0.7",
+    "ts-loader": "^2.0.1",
+    "typescript": "^2.1.4",
+    "uglify-es": "^3.0.26"
   },
   "jest": {
     "setupFiles": [
       "jest-localstorage-mock"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
     ]
-  },
-  "dependencies": {
-    "js-cookie": "^2.1.4",
-    "jwt-decode": "^2.2.0"
   }
 }

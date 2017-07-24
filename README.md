@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/dt/jwt-manager.svg)](https://www.npmjs.com/package/jwt-manager)
 
 JWT Manager is a Javascript Library designed to make storing and retrieving JWT tokens easier. It has an easy to use API
-designed to make working with JSON Web Tokens much easier.
+designed to make working with JSON Web Tokens much easier. It is written using Typescript and has **no dependencies**.
 
 ## Installation
 You can install this package by running `npm install --save jwt-manager`.
@@ -13,15 +13,15 @@ You can install this package by running `npm install --save jwt-manager`.
 You can then import the library using the following:
 
 ```js
-import {Manager} from 'jwt-manager';
-window.JWTManager = new Manager();
+import JWTManager from 'jwt-manager';
+window.JWTManager = new JWTManager();
 ```
 
 ## Usage
 Using the JWT Manager library you can set, get, forget and refresh JWT Tokens. By default they are stored as a cookie, however you can change this to local storage if you would prefer.
 To change the store to local storage, simply use the following:
 ```js
-JWTManager.config.store = 'local';
+window.JWTManager.useLocalStore();
 ```
 
 ### Setting JWT Tokens
@@ -43,7 +43,7 @@ If you would like to decode the JWT token, you can simply use the `decode` metho
 When dealing with JWT Tokens it is useful to monitor when the token is close to expiring so a request can be made to generate a new token. JWT manager handles this using a useful `monitor` method. For example:
 
 ```javascript
-JWTManager.monitor((token) => {
+window.JWTManager.monitor((token) => {
     // Make request to refresh token here
     // Then call the JWTManager.refresh() method and pass in your new token
 });
@@ -52,19 +52,13 @@ JWTManager.monitor((token) => {
 This will then check on an interval basis to see if the JWT Token is going to expire within the next 60 seconds. If it is, it will run the callback. You can also pass a second parameter to the `monitor` function. This will set the number of seconds until the token expires, before it triggers the callback. By default it is set to 60. In the below example, it will trigger the callback when the token is due to expire within the next 30 seconds.
 
 ```javascript
-JWTManager.monitor((token) => {
+window.JWTManager.monitor((token) => {
     // Make request to refresh token here
     // Then call the JWTManager.refresh() method and pass in your new token
 }, 30);
 ```
 
-JWT Manager will automatically check by default in three second intervals, however you can customise this by setting the following configuration option.
-
-```javascript
-JWTManger.config.secondsInterval = 5
-```
-
-The above example will make JWT Manager check in 5 second intervals instead.
+JWT Manager will automatically check in ten second intervals.
 
 ## Test Suite
 You can run the test suite by running `npm run test`
