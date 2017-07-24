@@ -2,7 +2,7 @@
   "name": "jwt-manager",
   "version": "1.1.9",
   "description": "A JS Library for managing JWT Tokens",
-  "main": "dist/bundle.js",
+  "main": "dist/build.js",
   "scripts": {
     "test": "jest",
     "build": "./node_modules/.bin/rollup -c",
