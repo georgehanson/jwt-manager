@@ -4,7 +4,7 @@ import {Cookie} from "./stores/cookie";
 import {Decoder} from "./decoder";
 import {Token} from "./token";
 
-export class JWTManager {
+class JWTManager {
 
     /**
      * The number of seconds for each interval check
@@ -76,7 +76,7 @@ export class JWTManager {
             try {
                 let decoded = this.decode();
 
-                let secondsUntilExpiry = (decoded.getExpiry() / 1000) - (Date.now() / 1000);
+                let secondsUntilExpiry = decoded.getExpiry() - (Date.now() / 1000);
 
                 if (secondsUntilExpiry <= remainingSeconds) {
                     callback(this.getToken());
@@ -102,3 +102,5 @@ export class JWTManager {
         return this.secondsInterval * 1000;
     }
 }
+
+export default JWTManager;

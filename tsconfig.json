@@ -1,14 +1,26 @@
 {
   "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "strict": true,
-    "noImplicitReturns": true,
-    "module": "es2015",
+    "module": "es6",
+    "target": "es6",
     "moduleResolution": "node",
-    "target": "es5"
+    "removeComments": true,
+    "isolatedModules": false,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "declaration": false,
+    "noImplicitAny": false,
+    "noImplicitUseStrict": false,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "pretty": true,
+    "outDir": "build"
   },
-  "include": [
-    "./src/**/*"
+  "exclude": [
+    "node_modules/*",
+    "tests"
+  ],
+  "files": [
+    "src/index.ts"
   ]
 }

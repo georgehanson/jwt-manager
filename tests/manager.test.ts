@@ -2,7 +2,7 @@ jest.mock('../src/stores/cookie');
 jest.mock('../src/stores/local');
 import {Local} from "../src/stores/local";
 import {Cookie} from "../src/stores/cookie";
-import {JWTManager} from '../src/index';
+import JWTManager from '../src/index';
 import {Token} from "../src/token";
 const tokenValue = 'test-token';
 
@@ -60,7 +60,7 @@ test("The token can be monitored", () => {
         manager.decoder.store.retrieve = jest.fn().mockReturnValue("");
     });
 
-    Date.now = jest.genMockFunction().mockReturnValue(1500653839);
+    Date.now = jest.genMockFunction().mockReturnValue(1500653839000);
 
     manager.monitor(callback);
 

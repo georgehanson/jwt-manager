@@ -1,6 +1,19 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var babelOptions = {
+    // "presets": [
+    //     [
+    //         "es2015",
+    //         {
+    //             "modules": false
+    //         }
+    //     ],
+    //     "es2016"
+    // ]
+};
+
+
 module.exports = {
     entry: './src/index.ts',
     output: {
@@ -11,45 +24,34 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
-                loader: 'ts-loader',
+                test: /\.ts?$/,
                 exclude: /node_modules/,
-                options: {
-                    appendTsSuffixTo: [/\.vue$/],
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: babelOptions
+                    },
+                    {
+                        loader: 'ts-loader'
+                    }
+                ]
+            }, {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: babelOptions
+                    }
+                ]
             }
         ]
     },
     resolve: {
         extensions: ['.ts', '.js', '.json'],
-    },
-    devServer: {
-        historyApiFallback: true,
-        noInfo: true
-    },
-    performance: {
-        hints: false
-    },
-    devtool: '#eval-source-map'
+    }
 }
 
 if (process.env.NODE_ENV === 'production') {
-    module.exports.devtool = '#source-map'
-    // http://vue-loader.vuejs.org/en/workflow/production.html
-    module.exports.plugins = (module.exports.plugins || []).concat([
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: '"production"'
-            }
-        }),
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: true,
-            compress: {
-                warnings: false
-            }
-        }),
-        new webpack.LoaderOptionsPlugin({
-            minimize: true
-        })
-    ])
+
 }
