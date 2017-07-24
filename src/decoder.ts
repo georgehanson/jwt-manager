@@ -1,7 +1,6 @@
 import {Store} from "./interfaces/store";
 import {Cookie} from "./stores/cookie";
 import {Local} from "./stores/local";
-import * as jws from "jws";
 import {Token} from "./token";
 
 export class Decoder {
@@ -29,7 +28,9 @@ export class Decoder {
         let token = this.store.retrieve();
 
         if (token) {
-            let decoded = jws.decode(token);
+            let sectioned = token.split('.')[1];
+            let replaced = sectioned.replace('-', '+').replace('_', '/');
+            let decoded = JSON.parse(window.atob(replaced));
 
             return new Token(decoded);
         }

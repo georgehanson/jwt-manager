@@ -6,12 +6,18 @@ export class Token {
     private decoded: object;
 
     /**
+     * Get the expiry
+     */
+    private expiry: number;
+
+    /**
      * Constructor
      * @param decoded
      */
-    constructor(decoded: object)
+    constructor(decoded: any)
     {
         this.decoded = decoded;
+        this.expiry = decoded.exp;
     }
 
     /**
@@ -21,7 +27,7 @@ export class Token {
      */
     public getPayload(): object
     {
-        return this.decoded.payload;
+        return this.decoded;
     }
 
     /**
@@ -29,6 +35,6 @@ export class Token {
      */
     public getExpiry(): number
     {
-        return this.getPayload().exp;
+        return this.expiry;
     }
 }

@@ -49,9 +49,5 @@
       "tsx",
       "js"
     ]
-  },
-  "dependencies": {
-    "jws": "^3.1.4",
-    "jwt-decode": "^2.2.0"
   }
 }
