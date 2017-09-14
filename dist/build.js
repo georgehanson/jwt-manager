@@ -196,7 +196,8 @@ class JWTManager {
         return this.secondsInterval * 1000;
     }
 }
-/* harmony default export */ __webpack_exports__["default"] = (JWTManager);
+/* harmony export (immutable) */ __webpack_exports__["default"] = JWTManager;
+
 
 
 /***/ }),
