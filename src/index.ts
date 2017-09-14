@@ -4,7 +4,7 @@ import {Cookie} from "./stores/cookie";
 import {Decoder} from "./decoder";
 import {Token} from "./token";
 
-class JWTManager {
+export default class JWTManager {
 
     /**
      * The number of seconds for each interval check
@@ -127,5 +127,3 @@ class JWTManager {
         return this.secondsInterval * 1000;
     }
 }
-
-export default JWTManager;
