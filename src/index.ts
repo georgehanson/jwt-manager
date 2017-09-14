@@ -69,16 +69,14 @@ class JWTManager {
      * Monitor the token for when it needs refreshing
      *
      * @param callback
-     * @param remainingSeconds
+     * @param secondsLimit
      */
-    public monitor(callback: (token: string) => void, remainingSeconds: number = 60): void {
+    public monitor(callback: (token: string) => void, secondsLimit: number = 60): void {
         setInterval(() => {
             try {
-                let decoded = this.decode();
+                let remainingSeconds = this.secondsRemaining();
 
-                let secondsUntilExpiry = decoded.getExpiry() - (Date.now() / 1000);
-
-                if (secondsUntilExpiry <= remainingSeconds) {
+                if (remainingSeconds <= secondsLimit) {
                     callback(this.getToken());
                 }
             } catch (e) {
@@ -93,6 +91,33 @@ class JWTManager {
     public useLocalStore(): void {
         this.store = new Local();
         this.decoder.useLocalStore();
+    }
+
+    /**
+     * Get the number of remaining seconds until the token expires
+     * @return {number} [description]
+     */
+    public secondsRemaining(): number {
+        let token = this.decode();
+
+        if (token) {
+            return token.getExpiry() - (Date.now() / 1000);
+        }
+    }
+
+    /**
+     * Check to see if the token has expired
+     *
+     * @return {boolean} [description]
+     */
+    public hasTokenExpired(): boolean {
+        let secondsRemaining = this.secondsRemaining();
+
+        if (! secondsRemaining) {
+            return false;
+        }
+
+        return secondsRemaining < 0;
     }
 
     /**

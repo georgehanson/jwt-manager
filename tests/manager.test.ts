@@ -69,3 +69,28 @@ test("The token can be monitored", () => {
     expect(callback).toHaveBeenCalledTimes(1);
     expect(callback).toHaveBeenCalledWith(token);
 });
+
+test("It can get the number of seconds until the token expires", () => {
+    let manager = new JWTManager();
+    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTAwNjUwMjIwLCJleHAiOjE1MDA2NTM4MzksImp0aSI6IjA5MTMxNTgwLTFlYmEtNDMyMS05M2ViLTRhOGVkMGY1NGFiMyJ9._6IK4WJnzpWtUvWRF3jsUru21SaZrKnhKHx9pTyXkKs';
+    manager.decoder.store.retrieve = jest.fn().mockReturnValue(token);
+    manager.store.retrieve = jest.fn().mockReturnValue(token);
+    Date.now = jest.genMockFunction().mockReturnValue(1500653739000)
+
+    let secondsRemaining = manager.secondsRemaining();
+    expect(secondsRemaining).toEqual(100);
+});
+
+test("It can return whether or not the token has expired", () => {
+    let manager = new JWTManager();
+    let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTAwNjUwMjIwLCJleHAiOjE1MDA2NTM4MzksImp0aSI6IjA5MTMxNTgwLTFlYmEtNDMyMS05M2ViLTRhOGVkMGY1NGFiMyJ9._6IK4WJnzpWtUvWRF3jsUru21SaZrKnhKHx9pTyXkKs';
+    manager.decoder.store.retrieve = jest.fn().mockReturnValue(token);
+    manager.store.retrieve = jest.fn().mockReturnValue(token);
+    Date.now = jest.genMockFunction().mockReturnValue(1500653739000)
+
+    expect(manager.hasTokenExpired()).toEqual(false);
+
+    Date.now = jest.genMockFunction().mockReturnValue(1500653939000)
+
+    expect(manager.hasTokenExpired()).toEqual(true);
+})
