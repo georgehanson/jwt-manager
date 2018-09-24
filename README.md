@@ -1,6 +1,6 @@
 # JWT Manager
 
-[![Build Status](https://travis-ci.org/GeorgeHanson/jwt-manager.svg?branch=master)](https://travis-ci.org/GeorgeHanson/jwt-manager)
+[![Build Status](https://travis-ci.org/georgehanson/jwt-manager.svg?branch=master)](https://travis-ci.org/georgehanson/jwt-manager)
 [![npm version](https://badge.fury.io/js/jwt-manager.svg)](https://badge.fury.io/js/jwt-manager)
 [![npm](https://img.shields.io/npm/dt/jwt-manager.svg)](https://www.npmjs.com/package/jwt-manager)
 
